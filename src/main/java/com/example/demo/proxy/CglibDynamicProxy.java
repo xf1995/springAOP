@@ -99,9 +99,6 @@ public class CglibDynamicProxy {
 
         @Override
         public int accept(Method method) {
-            if("".equals(method.getName())){
-                return 0;
-            }
             return 0;
         }
     }
