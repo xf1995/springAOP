@@ -29,11 +29,11 @@ public class Contrlloer {
     }*/
 
     Logger logger = LoggerFactory.getLogger(Contrlloer.class);
-    /*@Autowired
+    @Autowired
     InterfaceY y;
 
     @Autowired
-    X x;*/
+    X x;
 
     @Autowired
     T t;
