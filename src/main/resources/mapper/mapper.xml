@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.Mapper">
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from sys_user
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <select id="selectPriceByPrimaryKey" parameterType="java.lang.String" resultType="com.example.demo.entity.Price">
+        select * from price where id = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <update id="updatePriceByPrimarykey">
+        update price set price = #{price,jdbcType=DECIMAL},version = version+1
+        where id = #{id,jdbcType=VARCHAR} and version = #{version,jdbcType=INTEGER}
+    </update>
+
+</mapper>

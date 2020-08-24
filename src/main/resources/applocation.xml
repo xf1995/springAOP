@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+     http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd">
+
+    <!--==============测试Spring BeanFactry实例化Bean的过程-->
+    <context:component-scan base-package="com.example.demo.test.utils">
+
+    </context:component-scan>
+    <!--<aop:aspectj-autoproxy>
+        <aop:include></aop:include>
+    </aop:aspectj-autoproxy>-->
+    <bean id="x" class="com.example.demo.entity.X">
+    </bean>
+    <aop:config>
+        <aop:pointcut id="id" expression="execution(* *..*(..))"/>
+        <aop:aspect ref="x">
+            <aop:pointcut id="id" expression="execution(* *..*(..))"/>
+            <aop:after method="self" pointcut-ref="id"></aop:after>
+        </aop:aspect>
+    </aop:config>
+
+
+    <!--<bean id="x" class="com.example.demo.entity.X">
+    </bean>
+    <bean id="y" class="com.example.demo.entity.Y">
+    </bean>-->
+  <!--  <aop:config>x
+        <aop:pointcut id="z" expression="execution(* *..*(..))"/>
+        <aop:advisor advice-ref="x" pointcut-ref="z"></aop:advisor>
+    </aop:config>-->
+  <!--<mybatis-spring:scan base-package="com.example.demo.mapper"></mybatis-spring:scan>-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.example.demo.mapper" />
+    </bean>
+</beans>
